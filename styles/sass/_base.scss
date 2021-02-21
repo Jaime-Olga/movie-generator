@@ -1,0 +1,43 @@
+
+html {
+    font-size: 62.5%;
+}
+
+.wrapper {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+// mixin use examples
+// body {
+//     @include fluid-font-size(1.6rem, 2rem);
+    
+//     @include smartphone-MQ {
+//         & {
+//             background: $primary-color;
+//         }
+//     }
+// }
+
+
+input[type=radio] {  
+        display: none;  
+    }  
+    
+input[type=radio]+label:before {  
+        font-family: FontAwesome;  
+        display: inline-block;  
+    }  
+
+input[type=radio].action +label:before{
+content : '\f0fb';
+}
+
+input[type=radio].adventure +label:before{
+content : '\f277';
+}
+
+input[type=radio].comedy +label:before{
+content : '\f586';
+}
