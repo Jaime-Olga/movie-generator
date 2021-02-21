@@ -21,6 +21,42 @@ html {
 // }
 
 
+
+.genre-btns {
+            display: flex;
+            list-style: none;
+        }
+        
+.fas {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #3d3c3c;
+    color: #ececec;;
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.genre-btn:checked + .fas {
+    background-color: goldenrod;
+}
+
+span {
+    padding-top: 10px;
+}
+
+
 input[type=radio] {  
         display: none;  
     }  

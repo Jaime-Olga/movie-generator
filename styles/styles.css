@@ -231,6 +231,57 @@ html {
   margin: 0 auto;
 }
 
+.genre-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.fas {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #3d3c3c;
+  color: #ececec;
+  font-size: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.genre-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.genre-btn:checked + .fas {
+  background-color: goldenrod;
+}
+
+span {
+  padding-top: 10px;
+}
+
 input[type=radio] {
   display: none;
 }
