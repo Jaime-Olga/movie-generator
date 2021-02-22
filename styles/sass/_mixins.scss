@@ -16,6 +16,7 @@
     @return $value / ($value * 0 + 1);
 }
 
+
 @mixin fluid-font-size($min-font-size, $max-font-size, $min-vw: 30rem, $max-vw: 160rem) {
     
     $u1: unit($min-font-size);
@@ -35,6 +36,30 @@
             @media (min-width: $max-vw) {
                 font-size: $max-font-size;
                 line-height: calc(#{$max-font-size} + 5px);
+            }
+        }
+    }
+}
+
+@mixin fluid-width-height($min-font-size, $max-font-size, $min-vw: 30rem, $max-vw: 160rem) {
+    
+    $u1: unit($min-font-size);
+    $u2: unit($max-font-size);
+    $u3: unit($min-vw);
+    $u4: unit($max-vw);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+            height: $min-font-size;
+            width: $min-font-size;            
+            @media (min-width: $min-vw) {
+                $fluid-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+                height: $fluid-size;
+                width: $fluid-size;
+            }
+            @media (min-width: $max-vw) {
+                height: $max-font-size;
+                width: $max-font-size;
             }
         }
     }

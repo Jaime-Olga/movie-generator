@@ -223,28 +223,120 @@ textarea {
 
 html {
   font-size: 62.5%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .wrapper {
-  max-width: 1200px;
+  max-width: 1000px;
   width: 90%;
   margin: 0 auto;
+  border: 1px solid red;
+}
+
+body {
+  background-color: #232323;
+  background-image: url(../assets/reel.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100vh;
+  color: #e7e5e5;
+}
+
+.parent {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+h1 {
+  margin: 3% auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: calc(3rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  h1 {
+    font-size: calc(3rem + 7 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(3rem + 7 * ((100vw - 30rem) / 130)) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  h1 {
+    font-size: 10rem;
+    line-height: calc(10rem + 5px);
+  }
+}
+
+fieldset {
+  background: rgba(35, 35, 35, 0.5);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+          box-shadow: 5px 5px 15px 5px #000000;
+}
+
+h2 {
+  padding: 5% 5% 0 6%;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: calc(2rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  h2 {
+    font-size: calc(2rem + 2 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(2rem + 2 * ((100vw - 30rem) / 130)) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  h2 {
+    font-size: 4rem;
+    line-height: calc(4rem + 5px);
+  }
+}
+
+.form {
+  padding: 20px;
 }
 
 .genre-btns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   list-style: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2%;
 }
 
-.fas {
-  width: 80px;
-  height: 80px;
+li {
+  padding: 15px;
+}
+
+i.fas, i.fab {
   border-radius: 50%;
-  background-color: #3d3c3c;
-  color: #ececec;
-  font-size: 45px;
+  background-color: #e7e5e5;
+  color: #232323;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -254,6 +346,44 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+i.fas, i.fab {
+  height: 7rem;
+  width: 7rem;
+}
+
+@media (min-width: 30rem) {
+  i.fas, i.fab {
+    height: calc(7rem + 3 * ((100vw - 30rem) / 130));
+    width: calc(7rem + 3 * ((100vw - 30rem) / 130));
+  }
+}
+
+@media (min-width: 160rem) {
+  i.fas, i.fab {
+    height: 10rem;
+    width: 10rem;
+  }
+}
+
+i.fas, i.fab {
+  font-size: 3rem;
+  line-height: calc(3rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  i.fas, i.fab {
+    font-size: calc(3rem + 3 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(3rem + 3 * ((100vw - 30rem) / 130)) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  i.fas, i.fab {
+    font-size: 6rem;
+    line-height: calc(6rem + 5px);
+  }
 }
 
 .genre-label {
@@ -274,31 +404,11 @@ html {
   padding: 10px;
 }
 
-.genre-btn:checked + .fas {
+.genre-btn:checked + .fas,
+.genre-btn:checked + .fab {
   background-color: goldenrod;
 }
 
 span {
   padding-top: 10px;
-}
-
-input[type=radio] {
-  display: none;
-}
-
-input[type=radio] + label:before {
-  font-family: FontAwesome;
-  display: inline-block;
-}
-
-input[type=radio].action + label:before {
-  content: '\f0fb';
-}
-
-input[type=radio].adventure + label:before {
-  content: '\f277';
-}
-
-input[type=radio].comedy + label:before {
-  content: '\f586';
 }

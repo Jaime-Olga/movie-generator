@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/399494bc8f.js" crossorigin="anonymous"></script>
     <title>Movie Generator</title>
 </head>
@@ -19,84 +21,129 @@
             <main>
                 <div class="form">
                     <form action="#">
-                        <!-- <fieldset> -->
-                        <h2>Genre:</h2>
-                        <ul class=genre-btns>
-                            <li>
-                                <label for="genre-action" class=genre-label>
-                                    <input type="radio" class="sr-only genre-btn" name="genre" id='genre-action'
-                                        value="28">
-                                    <i class="fas fa-fighter-jet"></i>
-                                    <span>Action</span>
-                                </label>
-                            </li>
+                        <fieldset>
+                            <h2>Genre:</h2>
+                            <ul class=genre-btns>
+                                <li>
+                                    <label for="genre-action" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-action'
+                                            value="28">
+                                        <i class="fas fa-car-crash"></i>
+                                        <span>Action</span>
+                                    </label>
+                                </li>
 
-                            <li>
-                                <label for="genre-adventure" class=genre-label>
-                                    <input type="radio" id="genre-adventure" class="sr-only genre-adventure"
-                                        name="genre" value="12">
-                                    <i class="fas fa-map-signs"></i>
-                                    <span>Adventure</span>
-                                </label>
-                            </li>
+                                <li>
+                                    <label for="genre-adventure" class=genre-label>
+                                        <input type="radio" id="genre-adventure" class="sr-only genre-btn" name="genre"
+                                            value="12">
+                                        <i class="fas fa-map-signs"></i>
+                                        <span>Adventure</span>
+                                    </label>
+                                </li>
 
-                            <li>
-                                <label for="genre-comedy" class=genre-label>
-                                    <input type="radio" class="sr-only genre-btn" name="genre" id='genre-comedy'
-                                        value="35">
-                                    <i class="fas fa-grin-squint-tears"></i>
-                                    <span>Comedy</span>
-                                </label>
-                            </li>
+                                <li>
+                                    <label for="genre-comedy" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-comedy'
+                                            value="35">
+                                        <i class="fas fa-grin-squint-tears"></i>
+                                        <span>Comedy</span>
+                                    </label>
+                                </li>
 
-                            <!-- <input type="radio" id="action" class="action" name="genre" value="28">
-                        <label for="action">Action</label>
-                        
-                        <input type="radio" id="adventure" class="adventure" name="genre" value="12">
-                        <label for="adventure">Adventure</label>
-                        
-                        <input type="radio" id="comedy" class="comedy" name="genre" value="35">
-                        <label for="comedy">Comedy</label>
-                        
-                        <input type="radio" id="drama" class="drama" name="genre" value="18">
-                        <label for="drama">Drama</label>
-                        
-                        <input type="radio" id="fantasy" class="fantasy" name="genre" value="14">
-                        <label for="fantasy">Fantasy</label>
-                        
-                        <input type="radio" id="horror" class="horror" name="genre" value="27">
-                        <label for="horror">Horror</label>
-                        
-                        <input type="radio" id="mystery" class="mystery" name="genre" value="9648">
-                        <label for="mystery">Mystery</label>
-                        
-                        <input type="radio" id="romance" class="romance" name="genre" value="10749">
-                        <label for="romance">Romance</label>
-                        
-                        <input type="radio" id="sci-fi" class="sci-fi" name="genre" value="878">
-                        <label for="sci-fi">Science Fiction</label>
-                        
-                        <input type="radio" id="thriller" class="thriller" name="genre" value="53">
-                        <label for="thriller">Thriller</label>
-                        
-                        <input type="radio" id="western" class="western" name="genre" value="37">
-                        <label for="western">Western</label> -->
+                                <li>
+                                    <label for="genre-drama" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-drama'
+                                            value="18">
+                                        <i class="fas fa-theater-masks"></i>
+                                        <span>Drama</span>
+                                    </label>
+                                </li>
 
-                        </ul>
+                                <li>
+                                    <label for="genre-fantasy" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-fantasy'
+                                            value="14">
+                                        <i class="fab fa-fort-awesome"></i>
+                                        <span>Fantasy</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="genre-horror" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-horror'
+                                            value="27">
+                                        <i class="fas fa-ghost"></i>
+                                        <span>Horror</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="genre-mystery" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-mystery'
+                                            value="9648">
+                                        <i class="fas fa-user-secret"></i>
+                                        <span>Mystery</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="genre-romance" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-romance'
+                                            value="10749">
+                                        <i class="fas fa-heart"></i>
+                                        <span>Romance</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="genre-sci-fi" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-sci-fi'
+                                            value="878">
+                                        <i class="fas fa-robot"></i>
+                                        <span>Sci-Fi</span>
+                                    </label>
+                                </li>
+                                <li>
 
+                                    <label for="genre-thriller" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-thriller'
+                                            value="53">
+                                        <i class="fas fa-dizzy"></i>
+                                        <span>Thriller</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="genre-western" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-western'
+                                            value="37">
+                                        <i class="fas fa-hat-cowboy"></i>
+                                        <span>Western</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="genre-family" class=genre-label>
+                                        <input type="radio" class="sr-only genre-btn" name="genre" id='genre-family'
+                                            value="10751">
+                                        <i class="fas fa-home"></i>
+                                        <span>Family</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </fieldset>
                         <button type="submit">Submit</button>
-                        <!-- </fieldset> -->
+
                     </form>
                 </div>
 
                 <!-- movie result -->
                 <div class="movie-results">
-                    <h2><!-- title here --></h2>
+                    <h2>
+                        <!-- title here -->
+                    </h2>
                     <div class="movie-overview">
                         <div class="movie-img">
                             <img src="" alt="">
-                        </div>    
-                        <p class="overview"><!-- overview here --></p>
+                        </div>
+                        <p class="overview">
+                            <!-- overview here -->
+                        </p>
                         <p class="vote-avg">
                             <!-- vote average here -->
                         </p>

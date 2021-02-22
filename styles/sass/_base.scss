@@ -1,12 +1,27 @@
-
 html {
     font-size: 62.5%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .wrapper {
-    max-width: 1200px;
+    max-width: 1000px;
     width: 90%;
     margin: 0 auto;
+    border: 1px solid red;
+}
+
+body{
+    background-color:$primary-color;
+    background-image: url(../assets/reel.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: $secondary-color;
+}
+.parent{
+    flex-grow: 1;
 }
 
 // mixin use examples
@@ -19,21 +34,45 @@ html {
 //         }
 //     }
 // }
+h1{
+    @include fluid-font-size(3rem, 10rem);
+    margin: 3% auto;
+    text-align: center;
+}   
 
+fieldset{
+    background:$primary-color-transparent;
+    border-radius: 20px;
+    box-shadow:5px 5px 15px 5px #000000;   
+}
 
+h2{
+    @include fluid-font-size(2rem, 4rem);  
+    padding: 5% 5% 0 6%;
+}
+.form{
+    padding: 20px;
+}
 
 .genre-btns {
             display: flex;
+            flex-wrap: wrap;
             list-style: none;
-        }
+            align-items: center;
+            justify-content: center;
+            padding: 2%;
+            
+}
+li{
+    padding: 15px;
+}
         
-.fas {
-    width: 80px;
-    height: 80px;
+i.fas, i.fab {    
+    @include fluid-width-height(7rem, 10rem);
     border-radius: 50%;
-    background-color: #3d3c3c;
-    color: #ececec;;
-    font-size: 45px;
+    background-color: $secondary-color;
+    color:$primary-color;
+    @include fluid-font-size(3rem, 6rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +87,8 @@ html {
     padding: 10px;
 }
 
-.genre-btn:checked + .fas {
+.genre-btn:checked + .fas,
+.genre-btn:checked + .fab {
     background-color: goldenrod;
 }
 
@@ -56,24 +96,3 @@ span {
     padding-top: 10px;
 }
 
-
-input[type=radio] {  
-        display: none;  
-    }  
-    
-input[type=radio]+label:before {  
-        font-family: FontAwesome;  
-        display: inline-block;  
-    }  
-
-input[type=radio].action +label:before{
-content : '\f0fb';
-}
-
-input[type=radio].adventure +label:before{
-content : '\f277';
-}
-
-input[type=radio].comedy +label:before{
-content : '\f586';
-}
