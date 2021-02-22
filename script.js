@@ -60,8 +60,42 @@ movieApp.displayMovie = (movie) => {
     movieOverview.textContent = movie.overview;
     movieImg.src = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
     movieImg.alt = movie.title + " movie poster"
-    movieVoteAvg.textContent = "Vote Average: " + movie.vote_average;
+    // movieVoteAvg.textContent = "Vote Average: " + movie.vote_average;
     movieReleaseDt.textContent = "Release Date: " + movie.release_date;
+
+    //** stars!!! would need to remove p in html...might be easier to set all up in JS? **
+    console.log(movie.vote_average)
+    movieVoteAvg.innerHTML = `
+        <div class="vote-average">
+            <p class="sr-only">Vote Average: ${movie.vote_average}</p>
+            <div class="star-ratings">
+                <div class="empty-ratings">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div> 
+                <div class="fill-ratings" style="width: ${movie.vote_average * 10}%;">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+            <p>(${movie.vote_count} votes)</p>
+        </div>`
 }
 
 movieApp.randomItem = (arr) => {

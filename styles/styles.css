@@ -237,7 +237,8 @@ body {
   background-color: #232323;
   background-image: url(../assets/reel.png);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 18vh;
+  background-attachment: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -411,4 +412,46 @@ i.fas, i.fab {
 
 span {
   padding-top: 10px;
+}
+
+.vote-average {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.star-ratings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+  position: relative;
+  width: 225px;
+  color: #cda349;
+  margin: 8px 5px 30px 0px;
+}
+
+.star-ratings .empty-ratings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 0;
+}
+
+.star-ratings .fill-ratings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
 }

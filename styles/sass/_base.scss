@@ -14,7 +14,8 @@ body{
     background-color:$primary-color;
     background-image: url(../assets/reel.png);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 50% 18vh;
+    background-attachment: fixed;  //** should we fix it? **
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -94,5 +95,35 @@ i.fas, i.fab {
 
 span {
     padding-top: 10px;
+}
+
+//** stars!!! **
+//adapted from: https://codepen.io/LeoZoe/pen/vejoaj
+.vote-average {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.star-ratings {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    position: relative;
+    width: 225px;
+    color: $highlight-color;
+    margin: 8px 5px 30px 0px;
+
+    .empty-ratings {
+        display: flex;
+        position: absolute;
+        top: 0;
+    }
+
+    .fill-ratings {
+        display: flex;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
 }
 
