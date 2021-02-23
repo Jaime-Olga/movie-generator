@@ -1,6 +1,7 @@
 html {
     font-size: 62.5%;
     font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .wrapper {
@@ -150,11 +151,19 @@ i.fas, i.fab {
 
 .sub-heading {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding-top: 10px;
 
     h3 {
         padding-right: 8px;
+        padding-bottom: 2px;
+    }
+
+    i {
+        font-size: 1.8rem;
+        height: 3.5rem;
+        width: 3.5rem;
     }
 }
 
@@ -177,6 +186,7 @@ i.fas, i.fab {
     width: 225px;
     color: $highlight-color;
     margin-right: 5px;
+    margin-bottom: 25px;
 
     .empty-ratings {
         display: flex;
@@ -189,6 +199,18 @@ i.fas, i.fab {
         overflow: hidden;
         position: absolute;
         top: 0;
+    }
+}
+
+.genre-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+
+    i {
+        margin: 4px;
+        // background-color: $highlight-color;
     }
 }
 

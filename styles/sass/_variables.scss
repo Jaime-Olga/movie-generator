@@ -1,4 +1,9 @@
 $primary-color: #232323;
 $primary-color-transparent:rgba(35,35,35, 0.5);
-$secondary-color: #e7e5e5; //#cfcece
+$secondary-color: #cfcece; //#e7e5e5;
 $highlight-color: goldenrod;
+
+//export to use in javascript
+:export {
+    $highlight-color: goldenrod;
+}

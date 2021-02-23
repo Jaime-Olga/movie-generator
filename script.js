@@ -36,13 +36,13 @@ movieApp.getData = (genre) => {
             //select random movie
             const movie = movieApp.randomItem(newArr);
 
-            //call function to display movie
-            movieApp.displayMovie(movie);
+            //display movie
+            movieApp.displayMovie(movie, genre);
         })
     }
 
 //display random movie
-movieApp.displayMovie = (movie) => {
+movieApp.displayMovie = (movie, genreID) => {
 
     //construct elements
         //create poster img container
@@ -90,10 +90,56 @@ movieApp.displayMovie = (movie) => {
         //update width of filled stars to rating value
         starFilledContainer.setAttribute('style', `width: ${movie.vote_average * 10}%;`);
 
-    //add vote count
-    const voteCnt = document.createElement('p');
-    voteCnt.textContent = `(${movie.vote_count} votes)`;
-    ratingsContainer.appendChild(voteCnt);
+        //add vote count
+        const voteCnt = document.createElement('p');
+        voteCnt.textContent = `(${movie.vote_count} votes)`;
+        ratingsContainer.appendChild(voteCnt);
+
+        //create genre container
+        const genreContainer = document.createElement('div');
+        genreContainer.classList.add('sub-heading');
+        const genreHeader = document.createElement('h3');
+        genreHeader.textContent = 'Genres: ';
+        const genreValue = document.createElement('div');
+        genreValue.classList.add('genre-thumbnails');
+
+        //genre IDs in selected movie
+        const genreArray = movie.genre_ids;
+        //genre IDs with corresponding icon and label
+        const genreIcons = {
+            28: { icon: 'fas fa-car-crash', label: 'Action' },
+            12: { icon: 'fas fa-map-signs', label: 'Adventure' },
+            35: { icon: 'fas fa-grin-squint-tears', label: 'Comedy' },
+            18: { icon: 'fas fa-theater-masks', label: 'Drama' },
+            14: { icon: 'fab fa-fort-awesome', label: 'Fantasy' },
+            27: { icon: 'fas fa-ghost', label: 'Horror' },
+            9648: { icon: 'fas fa-user-secret', label: 'Mystery' },
+            10749: { icon: 'fas fa-heart', label: 'Romance' },
+            878: { icon: 'fas fa-robot', label: 'Sci-Fi' },
+            53: { icon: 'fas fa-dizzy', label: 'Thriller' },
+            37: { icon: 'fas fa-hat-cowboy', label: 'Western' },
+            10751: { icon: 'fas fa-home', label: 'Family' }
+        }
+
+        //loop through genres and append corresponding icon + label
+        genreArray.forEach(genre => {
+            if (genreIcons[genre]) {
+                const iconEl = document.createElement('i');
+                iconEl.setAttribute('class', genreIcons[genre].icon);
+                iconEl.setAttribute('title', genreIcons[genre].label);
+                iconEl.setAttribute('aria-label', genreIcons[genre].label);
+                
+                //update color of selected item
+                if (genreID == genre) {
+                    iconEl.setAttribute('style', 'background-color: goldenrod;')
+                }
+                genreValue.appendChild(iconEl);
+            }
+        });
+
+        genreContainer.appendChild(genreHeader);
+        genreContainer.appendChild(genreValue);
+
 
     //append items to container
         //create + append overview text
@@ -116,7 +162,7 @@ movieApp.displayMovie = (movie) => {
 
     //add to page
         //locate + clear results container
-        const resultsContainer = document.querySelector('.movie-results-section div');
+        const resultsContainer = document.querySelector('#movie-results-section div');
         resultsContainer.innerHTML = '';
         resultsContainer.classList.add('movie-results-container');
 
@@ -133,10 +179,14 @@ movieApp.displayMovie = (movie) => {
         overviewContainer.appendChild(ratingsContainer);
         overviewContainer.appendChild(overview);
         overviewContainer.appendChild(releaseDtContainer);
+        overviewContainer.appendChild(genreContainer);
 
         //append image and all overview items to details container
         movieDetailsContainer.appendChild(posterImgContainer);
         movieDetailsContainer.appendChild(overviewContainer);
+
+        //scroll to movie result section
+        document.getElementById("movie-results-section").scrollIntoView({ behavior: 'smooth' });
 }
 
 

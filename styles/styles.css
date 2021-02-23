@@ -224,6 +224,7 @@ textarea {
 html {
   font-size: 62.5%;
   font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .wrapper {
@@ -248,7 +249,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   min-height: 100vh;
-  color: #e7e5e5;
+  color: #cfcece;
 }
 
 body {
@@ -373,7 +374,7 @@ img {
 }
 
 button {
-  background-color: #e7e5e5;
+  background-color: #cfcece;
   padding: 7px 15px;
   text-transform: uppercase;
   border: none;
@@ -434,7 +435,7 @@ button:hover, button:focus {
 
 i.fas, i.fab {
   border-radius: 50%;
-  background-color: #e7e5e5;
+  background-color: #cfcece;
   color: #232323;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -542,6 +543,8 @@ i.fas, i.fab {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -550,6 +553,13 @@ i.fas, i.fab {
 
 .sub-heading h3 {
   padding-right: 8px;
+  padding-bottom: 2px;
+}
+
+.sub-heading i {
+  font-size: 1.8rem;
+  height: 3.5rem;
+  width: 3.5rem;
 }
 
 .vote-average {
@@ -577,6 +587,7 @@ i.fas, i.fab {
   width: 225px;
   color: goldenrod;
   margin-right: 5px;
+  margin-bottom: 25px;
 }
 
 .star-ratings .empty-ratings {
@@ -594,4 +605,21 @@ i.fas, i.fab {
   overflow: hidden;
   position: absolute;
   top: 0;
+}
+
+.genre-thumbnails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+}
+
+.genre-thumbnails i {
+  margin: 4px;
 }
