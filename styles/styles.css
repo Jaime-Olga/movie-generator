@@ -237,8 +237,9 @@ body {
   background-color: #232323;
   background-image: url(../assets/reel.png);
   background-repeat: no-repeat;
-  background-position: 50% 18vh;
+  background-position: center;
   background-attachment: fixed;
+  background-size: cover;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -248,6 +249,25 @@ body {
           flex-direction: column;
   min-height: 100vh;
   color: #e7e5e5;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: calc(1.6rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  body {
+    font-size: calc(1.6rem + 0.4 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.6rem + 0.4 * ((100vw - 30rem) / 130)) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  body {
+    font-size: 2rem;
+    line-height: calc(2rem + 5px);
+  }
 }
 
 .parent {
@@ -280,13 +300,6 @@ h1 {
   }
 }
 
-fieldset {
-  background: rgba(35, 35, 35, 0.5);
-  border-radius: 20px;
-  -webkit-box-shadow: 5px 5px 15px 5px #000000;
-          box-shadow: 5px 5px 15px 5px #000000;
-}
-
 h2 {
   padding: 5% 5% 0 6%;
 }
@@ -310,8 +323,89 @@ h2 {
   }
 }
 
-.form {
-  padding: 20px;
+h3 {
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.8rem;
+  line-height: calc(1.8rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  h3 {
+    font-size: calc(1.8rem + 0.7 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.8rem + 0.7 * ((100vw - 30rem) / 130)) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  h3 {
+    font-size: 2.5rem;
+    line-height: calc(2.5rem + 5px);
+  }
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+fieldset, .movie-results-container {
+  background: rgba(35, 35, 35, 0.5);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+          box-shadow: 5px 5px 15px 5px #000000;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+button {
+  background-color: #e7e5e5;
+  padding: 7px 15px;
+  text-transform: uppercase;
+  border: none;
+  margin: 20px auto;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 10px 3px #000000;
+          box-shadow: 3px 3px 10px 3px #000000;
+  -webkit-transition: background-color ease-in-out 0.2s;
+  transition: background-color ease-in-out 0.2s;
+}
+
+button {
+  font-size: 1.6rem;
+  line-height: calc(1.6rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  button {
+    font-size: calc(1.6rem + 0.4 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.6rem + 0.4 * ((100vw - 30rem) / 130)) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  button {
+    font-size: 2rem;
+    line-height: calc(2rem + 5px);
+  }
+}
+
+button:hover, button:focus {
+  background-color: goldenrod;
 }
 
 .genre-btns {
@@ -327,11 +421,15 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 2%;
+  padding: 1% 2% 4%;
 }
 
-li {
+.genre-btns li {
   padding: 15px;
+}
+
+.genre-btns input[type=radio] {
+  opacity: 0;
 }
 
 i.fas, i.fab {
@@ -403,6 +501,11 @@ i.fas, i.fab {
           align-items: center;
   font-size: 18px;
   padding: 10px;
+  padding-top: 0;
+}
+
+.genre-label span {
+  padding-top: 10px;
 }
 
 .genre-btn:checked + .fas,
@@ -410,8 +513,43 @@ i.fas, i.fab {
   background-color: goldenrod;
 }
 
-span {
+.movie-results-container {
+  padding: 20px;
+}
+
+.movie-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 6%;
+  padding-top: 2%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.movie-details > div {
+  width: 50%;
+}
+
+.movie-txt {
+  padding-left: 5%;
+}
+
+.sub-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-top: 10px;
+}
+
+.sub-heading h3 {
+  padding-right: 8px;
 }
 
 .vote-average {
@@ -420,9 +558,11 @@ span {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin: 4px 5px 8px 0px;
+}
+
+.vote-average p {
+  font-size: 1.6rem;
 }
 
 .star-ratings {
@@ -435,8 +575,8 @@ span {
   font-size: 2rem;
   position: relative;
   width: 225px;
-  color: #cda349;
-  margin: 8px 5px 30px 0px;
+  color: goldenrod;
+  margin-right: 5px;
 }
 
 .star-ratings .empty-ratings {

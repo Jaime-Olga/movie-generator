@@ -14,58 +14,86 @@ body{
     background-color:$primary-color;
     background-image: url(../assets/reel.png);
     background-repeat: no-repeat;
-    background-position: 50% 18vh;
-    background-attachment: fixed;  //** should we fix it? **
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     color: $secondary-color;
+    @include fluid-font-size(1.6rem, 2rem);
 }
-.parent{
+
+.parent {
     flex-grow: 1;
 }
 
-// mixin use examples
-// body {
-//     @include fluid-font-size(1.6rem, 2rem);
-    
-//     @include smartphone-MQ {
-//         & {
-//             background: $primary-color;
-//         }
-//     }
-// }
-h1{
+h1 {
     @include fluid-font-size(3rem, 10rem);
     margin: 3% auto;
     text-align: center;
 }   
 
-fieldset{
+h2 {
+    @include fluid-font-size(2rem, 4rem);  
+    padding: 5% 5% 0 6%;
+}
+
+h3 {
+    @include fluid-font-size(1.8rem, 2.5rem);
+    padding-bottom: 5px; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset, .movie-results-container {
     background:$primary-color-transparent;
     border-radius: 20px;
     box-shadow:5px 5px 15px 5px #000000;   
 }
 
-h2{
-    @include fluid-font-size(2rem, 4rem);  
-    padding: 5% 5% 0 6%;
-}
-.form{
-    padding: 20px;
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
 }
 
-.genre-btns {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2%;
-            
+button {
+    background-color: $secondary-color;
+    padding: 7px 15px;
+    @include fluid-font-size(1.6rem, 2rem);
+    text-transform: uppercase;
+    border: none;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow:3px 3px 10px 3px #000000;
+    transition: background-color ease-in-out 0.2s;
 }
-li{
-    padding: 15px;
+
+button:hover, button:focus {
+    background-color: $highlight-color;
+}
+
+//genre selection
+.genre-btns {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1% 2% 4%;
+    
+    li {
+        padding: 15px;
+    }
+
+    input[type=radio] {
+        opacity: 0;
+    }
 }
         
 i.fas, i.fab {    
@@ -86,24 +114,61 @@ i.fas, i.fab {
     align-items: center;
     font-size: 18px;
     padding: 10px;
+    padding-top: 0;
+
+    span {
+        padding-top: 10px;
+    }
 }
 
 .genre-btn:checked + .fas,
 .genre-btn:checked + .fab {
-    background-color: goldenrod;
+    background-color: $highlight-color;
 }
 
-span {
+
+//movie results section
+.movie-results-container {
+    padding: 20px;
+}
+
+.movie-details {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 6%;
+    padding-top: 2%;
+    align-items: center;
+}
+
+.movie-details > div {
+    width: 50%;
+}
+
+.movie-txt {
+    padding-left: 5%;
+}
+
+.sub-heading {
+    display: flex;
+    align-items: center;
     padding-top: 10px;
+
+    h3 {
+        padding-right: 8px;
+    }
 }
 
-//** stars!!! **
-//adapted from: https://codepen.io/LeoZoe/pen/vejoaj
+//star ratings - adapted from: https://codepen.io/LeoZoe/pen/vejoaj
 .vote-average {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    margin: 4px 5px 8px 0px;
+
+    p {
+        font-size: 1.6rem;
+    }
 }
+
 .star-ratings {
     display: flex;
     align-items: center;
@@ -111,7 +176,7 @@ span {
     position: relative;
     width: 225px;
     color: $highlight-color;
-    margin: 8px 5px 30px 0px;
+    margin-right: 5px;
 
     .empty-ratings {
         display: flex;
