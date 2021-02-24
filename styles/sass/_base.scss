@@ -58,9 +58,7 @@ fieldset, .movie-results-container {
 
 img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
+    height: auto;    
 }
 
 button {
@@ -131,6 +129,12 @@ i.fas, i.fab {
 //movie results section
 .movie-results-container {
     padding: 20px;
+    display: flex;
+    flex-direction: column;   
+    button{
+        align-self: center;
+    }
+    
 }
 
 .movie-details {
@@ -143,6 +147,12 @@ i.fas, i.fab {
 
 .movie-details > div {
     width: 50%;
+}
+
+.movie-img{
+    object-fit: cover;
+    object-position: center;
+    box-shadow:5px 5px 10px 3px #000000;
 }
 
 .movie-txt {
@@ -214,3 +224,12 @@ i.fas, i.fab {
     }
 }
 
+// similar-movies
+
+.similar-movies{
+    display: flex;
+}
+
+.similar-movies >div{
+    width: calc(100% / 3);
+}

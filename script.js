@@ -7,14 +7,16 @@
 // 6.	Clear any previously displayed movies and display the following properties from the randomly selected movie: title, poster, overview, average vote count, release date.
 
 const movieApp = {};
-
+movieApp.resultsContainer = document.querySelector('#movie-results-section div');
+movieApp.movieID = '';
+movieApp.baseURL = 'https://api.themoviedb.org/3/';
+movieApp.apiKey = 'be004bf3fc203fe839ccb38c47ddc0ee';
 //get movie options from TMDB API
 movieApp.getData = (genre) => {
-    const url = new URL('https://api.themoviedb.org/3/discover/movie')
+    const url = new URL(movieApp.baseURL + 'discover/movie')
     url.search = new URLSearchParams({
-        api_key: 'be004bf3fc203fe839ccb38c47ddc0ee',
+        api_key: movieApp.apiKey,
         with_original_language: 'en',
-        sort_by: 'popularity.desc',
         with_genres: genre
         // 'primary_release_date.gte': '2021-01-01',
         // 'primary_release_date.lte': movieApp.getTodaysDate()
@@ -35,11 +37,75 @@ movieApp.getData = (genre) => {
 
             //select random movie
             const movie = movieApp.randomItem(newArr);
+            movieApp.movieID = movie.id;
 
             //display movie
             movieApp.displayMovie(movie, genre);
         })
     }
+    //Gettting similar movies
+movieApp.getSimilarMovies = () => {
+        const url = new URL(movieApp.baseURL + 'movie/'+ movieApp.movieID + '/similar')
+        url.search = new URLSearchParams({
+            api_key: movieApp.apiKey,
+            // language: 'en'                   
+        })
+
+        fetch(url)
+            .then(function (response) {
+                //parse the response into JSON
+                return response.json()
+            }).then(function (jsonResponse) {
+
+                //filter returned array to exclude those without a poster path
+                const newArr = jsonResponse.results.filter((el) => {
+                    if (el.poster_path) {                        
+                        return el;
+                        
+                    };                    
+                });
+                //show more like this                
+                movieApp.displaySimilarMovies(newArr);
+            })
+    }
+//display similar movies
+movieApp.displaySimilarMovies =(array)=> {
+    console.log(movieApp.movieID)
+    console.log(array)
+    //adding container for similar movies
+    if(array.length){
+    const similarMoviesContainer = document.createElement('div');
+    similarMoviesContainer.classList.add('similar-movies')
+    console.log(similarMoviesContainer)    
+    // const similarMoviesContainer = document.createElement('#more-movies');
+
+    const moreLikeThis = document.createElement('h2');
+    moreLikeThis.textContent = 'More Like this:';
+    movieApp.resultsContainer.appendChild(moreLikeThis);    
+
+    for(let i=0; i<=2; i++){
+        const movie = array[i]
+        console.log(array)
+        console.log(array[i])  
+        //creating a div for each separate movie
+        const movieContainer = document.createElement('div');
+        similarMoviesContainer.appendChild(movieContainer);
+        //creating a div for images
+        const posterImgContainer = document.createElement('div');
+        posterImgContainer.classList.add('movie-img');
+        const posterImg = document.createElement('img');
+        posterImg.src = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
+        posterImg.alt = movie.title + " movie poster";
+        posterImgContainer.appendChild(posterImg);   
+        movieContainer.appendChild(posterImgContainer);
+
+        movieApp.resultsContainer.appendChild(similarMoviesContainer)        
+        }
+    }else{
+        console.log('no array')
+    }
+}
+
 
 //display random movie
 movieApp.displayMovie = (movie, genreID) => {
@@ -187,6 +253,12 @@ movieApp.displayMovie = (movie, genreID) => {
 
         //scroll to movie result section
         document.getElementById("movie-results-section").scrollIntoView({ behavior: 'smooth' });
+
+        //button for more results
+        const btn = document.createElement('button');
+        btn.setAttribute('id','similar-button')    
+        btn.textContent = 'Similar Movies';
+        resultsContainer.appendChild(btn)
 }
 
 
@@ -228,7 +300,13 @@ movieApp.init = () => {
         //call getData function
         movieApp.getData(genre.value)
     });
-    
+
+    movieApp.resultsContainer.addEventListener('click',(event)=>{
+        if(event.target.localName === "button"){          
+            movieApp.getSimilarMovies(); 
+            event.target.style.display="none";
+        }
+    })    
 };
 
 movieApp.init();

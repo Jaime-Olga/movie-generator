@@ -367,10 +367,6 @@ fieldset, .movie-results-container {
 img {
   width: 100%;
   height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
 }
 
 button {
@@ -516,6 +512,19 @@ i.fas, i.fab {
 
 .movie-results-container {
   padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.movie-results-container button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .movie-details {
@@ -533,6 +542,15 @@ i.fas, i.fab {
 
 .movie-details > div {
   width: 50%;
+}
+
+.movie-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-box-shadow: 5px 5px 10px 3px #000000;
+          box-shadow: 5px 5px 10px 3px #000000;
 }
 
 .movie-txt {
@@ -622,4 +640,14 @@ i.fas, i.fab {
 
 .genre-thumbnails i {
   margin: 4px;
+}
+
+.similar-movies {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.similar-movies > div {
+  width: calc(100% / 3);
 }
