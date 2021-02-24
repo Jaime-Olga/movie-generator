@@ -7,10 +7,13 @@
 // 6.	Clear any previously displayed movies and display the following properties from the randomly selected movie: title, poster, overview, average vote count, release date.
 
 const movieApp = {};
+
+movieApp.trailerKey = '';
 movieApp.resultsContainer = document.querySelector('#movie-results-section div');
 movieApp.movieID = '';
 movieApp.baseURL = 'https://api.themoviedb.org/3/';
 movieApp.apiKey = 'be004bf3fc203fe839ccb38c47ddc0ee';
+
 //get movie options from TMDB API
 movieApp.getData = (genre) => {
     const url = new URL(movieApp.baseURL + 'discover/movie')
@@ -41,9 +44,10 @@ movieApp.getData = (genre) => {
 
             //display movie
             movieApp.displayMovie(movie, genre);
-        })
+        });
     }
-    //Gettting similar movies
+
+//Gettting similar movies
 movieApp.getSimilarMovies = () => {
         const url = new URL(movieApp.baseURL + 'movie/'+ movieApp.movieID + '/similar')
         url.search = new URLSearchParams({
@@ -66,8 +70,63 @@ movieApp.getSimilarMovies = () => {
                 });
                 //show more like this                
                 movieApp.displaySimilarMovies(newArr);
-            })
+            });
     }
+
+//get movie trailer
+movieApp.getMovieTrailer = async () => {
+    const url = new URL(movieApp.baseURL + 'movie/' + movieApp.movieID + '/videos')
+    url.search = new URLSearchParams({
+        api_key: movieApp.apiKey,
+    });
+
+    let trailerKey;
+
+    await fetch(url)
+        .then(function (response) {
+            //parse the response into JSON
+            return response.json()
+        }).then(function (jsonResponse) {
+
+            //filter returned array to include only YouTube trailers
+            newArr = jsonResponse.results.filter((el) => {
+                if (el.site == 'YouTube' && el.type == 'Trailer') {
+                    return el;
+                }
+            });
+
+            //if no trailers, check for teasers
+            if (newArr.length === 0) {
+                newArr = jsonResponse.results.filter((el) => {
+                    if (el.site == 'YouTube' && el.type == 'Teaser') {
+                        return el;
+                    }
+                });
+            }
+
+            //return first trailer key, if exists
+            if (newArr) {
+                movieApp.trailerKey = newArr[0].key;
+                console.log('in if', movieApp.trailerKey);
+                return movieApp.trailerKey;
+
+                ///*** not working ***
+                // trailerKey = newArr[0].key;
+                // console.log('in if', trailerKey)
+            }
+        })
+        // .then( () => {
+        //     console.log('after if', movieApp.trailerKey)
+        //     return movieApp.trailerKey;
+        // }); 
+
+
+        ///*** not working ***
+        // console.log('in function', trailerKey)
+        // return trailerKey;
+
+}
+
 //display similar movies
 movieApp.displaySimilarMovies =(array)=> {
     console.log(movieApp.movieID)
@@ -206,8 +265,6 @@ movieApp.displayMovie = (movie, genreID) => {
         genreContainer.appendChild(genreHeader);
         genreContainer.appendChild(genreValue);
 
-
-    //append items to container
         //create + append overview text
         const overview = document.createElement('p');
         overview.textContent = movie.overview;
@@ -251,15 +308,31 @@ movieApp.displayMovie = (movie, genreID) => {
         movieDetailsContainer.appendChild(posterImgContainer);
         movieDetailsContainer.appendChild(overviewContainer);
 
-        //scroll to movie result section
-        document.getElementById("movie-results-section").scrollIntoView({ behavior: 'smooth' });
+        //get and add movie trailer button
+
+        //*** not working ***
+        // const trailerKey = movieApp.getMovieTrailer();
+        // console.log(trailerKey)
+
+        const trailerKey = movieApp.getMovieTrailer();
+        console.log(movieApp.trailerKey, trailerKey)
+        // const trailerKey = movieApp.trailerKey;
+
+        if (trailerKey) {
+            const trailerBtn = document.createElement('button');
+            trailerBtn.textContent = 'https://www.youtube.com/watch?v=' + trailerKey;
+            overviewContainer.appendChild(trailerBtn)
+        }
 
         //button for more results
         const btn = document.createElement('button');
         btn.setAttribute('id','similar-button')    
         btn.textContent = 'Similar Movies';
         resultsContainer.appendChild(btn)
-}
+        
+    //scroll to movie result section
+        document.getElementById("movie-results-section").scrollIntoView({ behavior: 'smooth' });
+    }
 
 
 //||||| helper functions |||||
