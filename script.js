@@ -253,7 +253,8 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
             }
             
         //scroll to movie result section
-            movieApp.resultsContainer.scrollIntoView( { behavior: 'smooth' });
+            movieApp.scrollTo(movieApp.resultsContainer);
+
     } else {
 
         //display error message movie variable not populated
@@ -300,7 +301,7 @@ movieApp.displaySimilarMovies = () => {
         movieApp.resultsContainer.appendChild(similarMoviesContainer)
 
         //scroll to similar movie result container
-        similarMoviesContainer.scrollIntoView({ behavior: 'smooth' });
+        movieApp.scrollTo(similarMoviesContainer);
     }
 }
 
@@ -334,6 +335,14 @@ movieApp.reformatDate = (dt, dashes) => {
 movieApp.randomItem = (arr) => {
     const randomEl = Math.floor(Math.random() * arr.length);
     return arr[randomEl];
+}
+
+//scroll element into view
+movieApp.scrollTo = (element) => {
+    //buffer to allow element to fully load before scrolling
+    setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100);
 }
 
 //||||| initialize |||||
