@@ -58,10 +58,16 @@ fieldset, .movie-results-container {
 
 img {
     width: 100%;
-    height: auto;    
+    height: auto;
+    border-radius: 15px;
 }
 
-button {
+a {
+    text-decoration: none;
+    color: $secondary-color;
+}
+
+button, .button {
     background-color: $secondary-color;
     padding: 7px 15px;
     @include fluid-font-size(1.6rem, 2rem);
@@ -71,10 +77,27 @@ button {
     border-radius: 5px;
     box-shadow:3px 3px 10px 3px #000000;
     transition: background-color ease-in-out 0.2s;
+    font-family: inherit;
+    font-weight: bold;
+} 
+
+button:hover, button:focus, 
+.button:hover, .button:focus {
+    background-color: $highlight-color;
 }
 
-button:hover, button:focus {
-    background-color: $highlight-color;
+//links formatted as buttons
+a.button {
+    display: inline-block;
+    margin-bottom: 0;
+    color: $primary-color;
+    font-size: 1.55rem;
+}
+
+a.button::before { 
+    font-family: "FontAwesome";
+    content: "\f04b";
+    padding-right: 5px;
 }
 
 //genre selection
@@ -93,14 +116,18 @@ button:hover, button:focus {
     input[type=radio] {
         opacity: 0;
     }
+
+    i.fas, i.fab {
+        @include fluid-width-height(7rem, 10rem);
+        @include fluid-font-size(3rem, 6rem);
+        cursor: pointer;
+    }
 }
         
 i.fas, i.fab {    
-    @include fluid-width-height(7rem, 10rem);
     border-radius: 50%;
     background-color: $secondary-color;
     color:$primary-color;
-    @include fluid-font-size(3rem, 6rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,11 +157,12 @@ i.fas, i.fab {
 .movie-results-container {
     padding: 20px;
     display: flex;
-    flex-direction: column;   
-    button{
+    flex-direction: column; 
+
+    button {
         align-self: center;
+        margin-top: 5px;
     }
-    
 }
 
 .movie-details {
@@ -153,6 +181,7 @@ i.fas, i.fab {
     object-fit: cover;
     object-position: center;
     box-shadow:5px 5px 10px 3px #000000;
+    border-radius: 15px;
 }
 
 .movie-txt {
@@ -163,7 +192,7 @@ i.fas, i.fab {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding-top: 10px;
+    margin-top: 15px;
 
     h3 {
         padding-right: 8px;
