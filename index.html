@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -32,7 +36,6 @@
                                         <span>Action</span>
                                     </label>
                                 </li>
-
                                 <li>
                                     <label for="genre-adventure" class=genre-label>
                                         <input type="radio" id="genre-adventure" class="sr-only genre-btn" name="genre"
@@ -41,7 +44,6 @@
                                         <span>Adventure</span>
                                     </label>
                                 </li>
-
                                 <li>
                                     <label for="genre-comedy" class=genre-label>
                                         <input type="radio" class="sr-only genre-btn" name="genre" id='genre-comedy'
@@ -50,7 +52,6 @@
                                         <span>Comedy</span>
                                     </label>
                                 </li>
-
                                 <li>
                                     <label for="genre-drama" class=genre-label>
                                         <input type="radio" class="sr-only genre-btn" name="genre" id='genre-drama'
@@ -59,7 +60,6 @@
                                         <span>Drama</span>
                                     </label>
                                 </li>
-
                                 <li>
                                     <label for="genre-fantasy" class=genre-label>
                                         <input type="radio" class="sr-only genre-btn" name="genre" id='genre-fantasy'
@@ -130,30 +130,28 @@
                     </form>
                 </section>
 
-                <a href="" target></a>
+                <!-- <a href="" target></a> -->
 
                 <!-- movie result -->
                 <section class="movie-results-section" id="movie-results-section">
-                    
                     <div>
                         <!-- movie result added here -->
-                        
+
                     </div>
-                    
-                    <!-- <div id="more-movies" class="similar-movies">
-                        
+                    <!-- <div id="more-movies" class="similar-movies">                        
 
                     </div> -->
                 </section>
-                
+                <div class="scroll-up"><button id="myBtn" title="Scroll up button" class="up-button"><i
+                            class="fad fa-angle-double-up"></i></button>
+                </div>
             </main>
-
         </div>
     </div>
     <footer>
         <div class="wrapper">
-            <p>Data supplied by <a href="https://www.themoviedb.org/?language=en-CA">TMDb</a></p>
-            <p>Created at <a href="https://junocollege.com/">Juno College</a></p>
+            <p>Data supplied by <span><a href="https://www.themoviedb.org/?language=en-CA">TMDb</a></span></p>
+            <p>Created at <span><a href="https://junocollege.com/">Juno College</a></span></p>
         </div>
     </footer>
     <script src="./script.js"></script>

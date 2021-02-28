@@ -7,8 +7,7 @@ html {
 .wrapper {
     max-width: 1000px;
     width: 90%;
-    margin: 0 auto;
-    border: 1px solid red;
+    margin: 0 auto;    
 }
 
 body{
@@ -22,7 +21,7 @@ body{
     flex-direction: column;
     min-height: 100vh;
     color: $secondary-color;
-    @include fluid-font-size(1.6rem, 2rem);
+    @include fluid-font-size(1.5rem, 2rem);
 }
 
 .parent {
@@ -38,6 +37,11 @@ h1 {
 h2 {
     @include fluid-font-size(2rem, 4rem);  
     padding: 5% 5% 0 6%;
+    @include small-laptop{
+        &{
+            padding: 3% 5% 0% 3%;
+        }
+    }
 }
 
 h3 {
@@ -51,9 +55,11 @@ form {
 }
 
 fieldset, .movie-results-container {
+    padding: 20px;
     background:$primary-color-transparent;
     border-radius: 20px;
     box-shadow:5px 5px 15px 5px #000000;   
+    
 }
 
 img {
@@ -73,7 +79,7 @@ button, .button {
     @include fluid-font-size(1.6rem, 2rem);
     text-transform: uppercase;
     border: none;
-    margin: 20px auto;
+    margin: 30px auto;
     border-radius: 5px;
     box-shadow:3px 3px 10px 3px #000000;
     transition: background-color ease-in-out 0.2s;
@@ -107,10 +113,16 @@ a.button::before {
     list-style: none;
     align-items: center;
     justify-content: center;
-    padding: 1% 2% 4%;
+    padding: 1% 4% 4%;    
     
     li {
-        padding: 15px;
+        padding: 2%;
+        @include small-phone{
+            &{
+                width: 110px;  
+            }
+        }
+        
     }
 
     input[type=radio] {
@@ -121,6 +133,7 @@ a.button::before {
         @include fluid-width-height(7rem, 10rem);
         @include fluid-font-size(3rem, 6rem);
         cursor: pointer;
+        transition: transform ease-in-out .2s;
     }
 }
         
@@ -152,16 +165,28 @@ i.fas, i.fab {
     background-color: $highlight-color;
 }
 
+.genre-btns :hover .fas, 
+.genre-btns :hover .fab,
+.gentre-btns:focus .fas,
+.gentre-btns:focus .fab{
+    transform: scale(1.15); 
+    box-shadow: 3px 3px 10px 3px #000000; 
+}
+
 
 //movie results section
-.movie-results-container {
-    padding: 20px;
+.movie-results-container {    
     display: flex;
     flex-direction: column; 
+    margin-bottom: 5%;
+
+    h2:last-of-type{
+        margin-top: 35px;
+    }
 
     button {
         align-self: center;
-        margin-top: 5px;
+        margin-top: 50px;
     }
 }
 
@@ -171,10 +196,23 @@ i.fas, i.fab {
     padding: 6%;
     padding-top: 2%;
     align-items: center;
+    @include small-laptop{
+        &{
+            padding: 3%; 
+        }
+        
+    }
 }
+
 
 .movie-details > div {
     width: 50%;
+    @include small-laptop {
+        &{
+            width: 100%;
+        }
+        
+    }
 }
 
 .movie-img{
@@ -186,6 +224,13 @@ i.fas, i.fab {
 
 .movie-txt {
     padding-left: 5%;
+    @include small-laptop {
+        &{
+            padding-left: 0;
+            padding-top: 5%;
+        }
+        
+    }
 }
 
 .sub-heading {
@@ -206,7 +251,6 @@ i.fas, i.fab {
     }
 }
 
-//star ratings - adapted from: https://codepen.io/LeoZoe/pen/vejoaj
 .vote-average {
     display: flex;
     flex-wrap: wrap;
@@ -248,17 +292,78 @@ i.fas, i.fab {
     width: 100%;
 
     i {
-        margin: 4px;
-        // background-color: $highlight-color;
+        margin: 4px;        
     }
 }
 
-// similar-movies
 
+
+// similar-movies
 .similar-movies{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 6% 6%;
+    @include small-laptop{
+        &{
+            padding: 25px;
+        }
+        
+    }  
 }
 
-.similar-movies >div{
-    width: calc(100% / 3);
+.similar-movies > div{
+    width: calc(90% / 3);    
+    @include small-laptop{
+        &{
+            width: 100%;
+            margin-bottom: 5%;
+        }
+        
+    }  
 }
+
+
+.up-button {
+font-family: 'FontAwesome';
+@include fluid-font-size(3rem, 6rem);
+display: none;
+position: fixed;
+bottom: 20px;
+right:5%;
+z-index: 99;
+cursor: pointer;
+background-color: transparent;
+color: $secondary-color-transparent;
+font-weight: lighter;
+box-shadow: none;
+transition: transform ease-in-out .2s;
+}
+
+.up-button:hover,
+.up-button:focus {
+background-color:  transparent;
+transform: scale(1.2);
+color: $secondary-color-transparent-2;
+}
+
+
+
+
+footer{    
+    background-color: $primary-color;
+    color: $secondary-color;
+    text-align: center;
+    box-shadow:5px 5px 15px 5px #000000; 
+    padding: 10px 0;
+    @include fluid-font-size(1.6rem, 2.5rem);    
+    @include animated-underline($highlight-color, 'span') ;      
+
+        p{
+            padding: 4px 0;
+        }
+        a{
+        color: $highlight-color;
+        }
+}
+

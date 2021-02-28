@@ -1,22 +1,3 @@
-
-//mixin examples
-@mixin position($pos: relative) {
-    position: $pos;
-    top: 50px;
-}
-
-@mixin smartphone-MQ {
-    @media (max-width: 500px) {
-        @content;
-    }
-}
-
-//calculate font size & line-height, courtesy of (with minor modifications): https://css-tricks.com/snippets/css/fluid-typography/
-@function strip-unit($value) {
-    @return $value / ($value * 0 + 1);
-}
-
-
 @mixin fluid-font-size($min-font-size, $max-font-size, $min-vw: 30rem, $max-vw: 160rem) {
     
     $u1: unit($min-font-size);
@@ -41,26 +22,59 @@
     }
 }
 
-@mixin fluid-width-height($min-font-size, $max-font-size, $min-vw: 30rem, $max-vw: 160rem) {
+@mixin fluid-width-height($min-size, $max-size, $min-vw: 30rem, $max-vw: 160rem) {
     
-    $u1: unit($min-font-size);
-    $u2: unit($max-font-size);
+    $u1: unit($min-size);
+    $u2: unit($max-size);
     $u3: unit($min-vw);
     $u4: unit($max-vw);
 
     @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
         & {
-            height: $min-font-size;
-            width: $min-font-size;            
+            height: $min-size;
+            width: $min-size;            
             @media (min-width: $min-vw) {
-                $fluid-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+                $fluid-size: calc(#{$min-size} + #{strip-unit($max-size - $min-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
                 height: $fluid-size;
                 width: $fluid-size;
             }
             @media (min-width: $max-vw) {
-                height: $max-font-size;
-                width: $max-font-size;
+                height: $max-size;
+                width: $max-size;
             }
         }
+    }
+}
+
+//animated underline on hover
+@mixin animated-underline($color, $el: 'li') {
+    a {
+        position: relative;
+    }
+    a:after {
+        content: '';
+        height: 2px;
+        position: absolute;
+        bottom: -5px;
+        background: $color; 
+        width: 0;
+        left: 50%;
+        transition: width 0.3s, left 0.3s;
+    }
+    #{$el}:hover a:after, #{$el}:focus a:after {
+        width: 100%;
+        left: 0;
+    }
+}
+
+@mixin small-laptop {
+    @media (max-width: 1030px) {
+        @content;
+    }
+}
+
+@mixin small-phone {
+    @media (max-width: 400px) {
+        @content;
     }
 }
