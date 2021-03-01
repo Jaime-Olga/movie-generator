@@ -180,7 +180,7 @@ i.fas, i.fab {
     margin-bottom: 5%;
 
     h2 {
-        padding-bottom: 1%;
+        padding-bottom: 10px;
     }
 
     h2:nth-of-type(2) {
@@ -231,7 +231,7 @@ i.fas, i.fab {
     @include small-laptop {
         & {
             padding-left: 0;
-            padding-top: 5%;
+            margin-top: 30px;
         }
     }
 }
@@ -319,7 +319,7 @@ i.fas, i.fab {
     @include tablet {
         & {
             width: 100%;
-            margin: 0 0 5%;
+            margin: 0 0 25px;
         }
     }  
 }
