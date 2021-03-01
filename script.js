@@ -92,7 +92,13 @@ movieApp.getData = (genre) => {
 
                     //display movie, incl. trailer + similar movie buttons, if applicable
                     movieApp.displayMovie(genre, trailerKey, similarMovies);
+                }).catch(() => {
+                    //display movie without trailer/similar movies
+                    movieApp.displayMovie(genre);
                 });
+        }).catch(() => {
+            //call display movie function - friendly error message will be displayed
+            movieApp.displayMovie();
         });
 }
 
