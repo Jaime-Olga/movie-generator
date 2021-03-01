@@ -254,19 +254,19 @@ body {
 }
 
 h1 {
-  margin: 3% auto;
+  margin: 30px auto 25px;
   text-align: center;
 }
 
 h1 {
-  font-size: 3rem;
-  line-height: calc(3rem + 5px);
+  font-size: 3.2rem;
+  line-height: calc(3.2rem + 5px);
 }
 
 @media (min-width: 30rem) {
   h1 {
-    font-size: calc(3rem + 7 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(3rem + 7 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(3.2rem + 6.8 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(3.2rem + 6.8 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 

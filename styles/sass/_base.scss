@@ -29,8 +29,8 @@ body {
 }
 
 h1 {
-    @include fluid-font-size(3rem, 10rem);
-    margin: 3% auto;
+    @include fluid-font-size(3.2rem, 10rem);
+    margin: 30px auto 25px;
     text-align: center;
 }   
 
