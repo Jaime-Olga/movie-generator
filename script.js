@@ -37,8 +37,7 @@ movieApp.getData = (genre) => {
             movieApp.movie = movieApp.randomItem(newArr);
             movieApp.movieID = movieApp.movie.id;
             
-        }).then(function() {
-            
+        }).then(function() {            
             //construct movie trailer endpoint
             const urlTrailer = new URL(movieApp.baseURL + 'movie/' + movieApp.movieID + '/videos')
             urlTrailer.search = new URLSearchParams({
@@ -65,7 +64,6 @@ movieApp.getData = (genre) => {
             //resolve both promises
             Promise.all(requests)
                 .then(data => {
-
                     //get trailer key
                     let trailerKey;
                     const trailerData = data[0].results;
@@ -114,18 +112,18 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
 
         //construct elements
             //create poster img container
-            const posterImgContainer = document.createElement('div');
-            posterImgContainer.classList.add('movie-img');
+            movieApp.posterImgContainer = document.createElement('div');
+            movieApp.posterImgContainer.classList.add('movie-img');
 
             //append poster image to container
             const posterImg = document.createElement('img');
             posterImg.src = "https://image.tmdb.org/t/p/w500/" + movieApp.movie.poster_path;
             posterImg.alt = movieApp.movie.title + " movie poster";
-            posterImgContainer.appendChild(posterImg);
+            movieApp.posterImgContainer.appendChild(posterImg);
 
             //create overview container
-            const overviewContainer = document.createElement('div');
-            overviewContainer.classList.add('movie-txt');
+            movieApp.overviewContainer = document.createElement('div');
+            movieApp.overviewContainer.classList.add('movie-txt');
 
             //create overview title
             const overviewTitle = document.createElement('h3');
@@ -234,10 +232,10 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
             movieApp.resultsContainer.appendChild(movieDetailsContainer);
             
             //append all overview items to overview container
-            overviewContainer.append(overviewTitle, ratingsContainer, overview, releaseDtContainer, genreContainer);
+            movieApp.overviewContainer.append(overviewTitle, ratingsContainer, overview, releaseDtContainer, genreContainer);
 
             //append image and all overview items to details container
-            movieDetailsContainer.append(posterImgContainer, overviewContainer);
+            movieDetailsContainer.append(movieApp.posterImgContainer, movieApp.overviewContainer);
 
         //add dynamic elements to page
             //add movie trailer button, if trailer found
@@ -247,7 +245,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
                 trailerBtn.setAttribute('target', '_blank');
                 trailerBtn.href = 'https://www.youtube.com/watch?v=' + trailerKey;
                 trailerBtn.textContent = '   Play Trailer';
-                overviewContainer.appendChild(trailerBtn);
+                movieApp.overviewContainer.appendChild(trailerBtn);
             }
 
             //add button for more results, if simlar movies found
@@ -258,7 +256,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
                 movieApp.resultsContainer.appendChild(similarMoviesBtn)
             }
             
-        //scroll to movie result section
+            //scroll to movie result section
             movieApp.scrollTo(movieApp.resultsContainer);
 
     } else {
@@ -270,7 +268,6 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
         movieApp.resultsContainer.appendChild(errMsg);
     }
 }
-
 
 //display similar movies
 movieApp.displaySimilarMovies = () => {
@@ -285,23 +282,23 @@ movieApp.displaySimilarMovies = () => {
     movieApp.resultsContainer.appendChild(moreLikeThis);
 
     //loop through similar movie array
-    for (let i = 0; i <= 2; i++) {
-        const movie = movieApp.similarMoviesArr[i]
-
-        //creating a div for each separate movie
-        const movieContainer = document.createElement('div');
-        similarMoviesContainer.appendChild(movieContainer);
-
+    const numMovies = 2;
+    if (movieApp.similarMoviesArr.length < numMovies){
+        numMovies = movieApp.similarMoviesArr.length
+    }
+    for (let i = 0; i <= numMovies; i++) {
+        const movie = movieApp.similarMoviesArr[i]     
+    
         //creating a div for images
-        const posterImgContainer = document.createElement('div');
-        posterImgContainer.classList.add('movie-img');
+        movieApp.posterImgContainer = document.createElement('div');
+        movieApp.posterImgContainer.classList.add('movie-img');
         const posterImg = document.createElement('img');
         posterImg.src = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
         posterImg.alt = movie.title + " movie poster";
-        posterImgContainer.appendChild(posterImg);
+        movieApp.posterImgContainer.appendChild(posterImg);
 
         //add image to movie container
-        movieContainer.appendChild(posterImgContainer);
+        similarMoviesContainer.appendChild(movieApp.posterImgContainer);
 
         //add to page
         movieApp.resultsContainer.appendChild(similarMoviesContainer)
@@ -343,16 +340,43 @@ movieApp.randomItem = (arr) => {
     return arr[randomEl];
 }
 
-//scroll element into view
+//Get the scrollUP button
+movieApp.scrollUp = () =>{
+    const mybutton = document.getElementById("myBtn");
+    // When the user scrolls down 50px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    mybutton.addEventListener('click',() =>{
+        topFunction()
+    })
+}
+
+
+
 movieApp.scrollTo = (element) => {
-    //buffer to allow element to fully load before scrolling
+    // buffer to allow element to fully load before scrolling
     setTimeout(() => {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }, 100);
 }
 
+
 //||||| initialize |||||
 movieApp.init = () => {
+    movieApp.scrollUp();
 
     const formEl = document.querySelector('form');
     
@@ -372,7 +396,8 @@ movieApp.init = () => {
             movieApp.displaySimilarMovies(); 
             event.target.style.display="none";
         }
-    })    
+    })
+
 };
 
 movieApp.init();

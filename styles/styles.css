@@ -231,7 +231,6 @@ html {
   max-width: 1000px;
   width: 90%;
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 body {
@@ -253,14 +252,14 @@ body {
 }
 
 body {
-  font-size: 1.6rem;
-  line-height: calc(1.6rem + 5px);
+  font-size: 1.5rem;
+  line-height: calc(1.5rem + 5px);
 }
 
 @media (min-width: 30rem) {
   body {
-    font-size: calc(1.6rem + 0.4 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(1.6rem + 0.4 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(1.5rem + strip-unit(0.5rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(1.5rem + strip-unit(0.5rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
   }
 }
 
@@ -289,8 +288,8 @@ h1 {
 
 @media (min-width: 30rem) {
   h1 {
-    font-size: calc(3rem + 7 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(3rem + 7 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(3rem + strip-unit(7rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(3rem + strip-unit(7rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
   }
 }
 
@@ -312,8 +311,8 @@ h2 {
 
 @media (min-width: 30rem) {
   h2 {
-    font-size: calc(2rem + 2 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(2rem + 2 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(2rem + strip-unit(2rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(2rem + strip-unit(2rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
   }
 }
 
@@ -321,6 +320,12 @@ h2 {
   h2 {
     font-size: 4rem;
     line-height: calc(4rem + 5px);
+  }
+}
+
+@media (max-width: 1030px) {
+  h2 {
+    padding: 3% 5% 0% 3%;
   }
 }
 
@@ -335,8 +340,8 @@ h3 {
 
 @media (min-width: 30rem) {
   h3 {
-    font-size: calc(1.8rem + 0.7 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(1.8rem + 0.7 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(1.8rem + strip-unit(0.7rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(1.8rem + strip-unit(0.7rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
   }
 }
 
@@ -358,7 +363,8 @@ form {
 }
 
 fieldset, .movie-results-container {
-  background: rgba(35, 35, 35, 0.5);
+  padding: 20px;
+  background: rgba(35, 35, 35, 0.7);
   border-radius: 20px;
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
           box-shadow: 5px 5px 15px 5px #000000;
@@ -380,7 +386,7 @@ button, .button {
   padding: 7px 15px;
   text-transform: uppercase;
   border: none;
-  margin: 20px auto;
+  margin: 30px auto;
   border-radius: 5px;
   -webkit-box-shadow: 3px 3px 10px 3px #000000;
           box-shadow: 3px 3px 10px 3px #000000;
@@ -397,8 +403,8 @@ button, .button {
 
 @media (min-width: 30rem) {
   button, .button {
-    font-size: calc(1.6rem + 0.4 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(1.6rem + 0.4 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(1.6rem + strip-unit(0.4rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(1.6rem + strip-unit(0.4rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
   }
 }
 
@@ -440,11 +446,17 @@ a.button::before {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 1% 2% 4%;
+  padding: 1% 4% 4%;
 }
 
 .genre-btns li {
-  padding: 15px;
+  padding: 2%;
+}
+
+@media (max-width: 400px) {
+  .genre-btns li {
+    width: 110px;
+  }
 }
 
 .genre-btns input[type=radio] {
@@ -453,6 +465,10 @@ a.button::before {
 
 .genre-btns i.fas, .genre-btns i.fab {
   cursor: pointer;
+  -webkit-transition: -webkit-transform ease-in-out .2s;
+  transition: -webkit-transform ease-in-out .2s;
+  transition: transform ease-in-out .2s;
+  transition: transform ease-in-out .2s, -webkit-transform ease-in-out .2s;
 }
 
 .genre-btns i.fas, .genre-btns i.fab {
@@ -462,8 +478,8 @@ a.button::before {
 
 @media (min-width: 30rem) {
   .genre-btns i.fas, .genre-btns i.fab {
-    height: calc(7rem + 3 * ((100vw - 30rem) / 130));
-    width: calc(7rem + 3 * ((100vw - 30rem) / 130));
+    height: calc(7rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    width: calc(7rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
   }
 }
 
@@ -481,8 +497,8 @@ a.button::before {
 
 @media (min-width: 30rem) {
   .genre-btns i.fas, .genre-btns i.fab {
-    font-size: calc(3rem + 3 * ((100vw - 30rem) / 130));
-    line-height: calc(calc(3rem + 3 * ((100vw - 30rem) / 130)) + 5px);
+    font-size: calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
   }
 }
 
@@ -536,8 +552,17 @@ i.fas, i.fab {
   background-color: goldenrod;
 }
 
+.genre-btns :hover .fas,
+.genre-btns :hover .fab,
+.gentre-btns:focus .fas,
+.gentre-btns:focus .fab {
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+  -webkit-box-shadow: 3px 3px 10px 3px #000000;
+          box-shadow: 3px 3px 10px 3px #000000;
+}
+
 .movie-results-container {
-  padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -545,13 +570,18 @@ i.fas, i.fab {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-bottom: 5%;
+}
+
+.movie-results-container h2:last-of-type {
+  margin-top: 35px;
 }
 
 .movie-results-container button {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  margin-top: 5px;
+  margin-top: 50px;
 }
 
 .movie-details {
@@ -567,8 +597,20 @@ i.fas, i.fab {
           align-items: center;
 }
 
+@media (max-width: 1030px) {
+  .movie-details {
+    padding: 3%;
+  }
+}
+
 .movie-details > div {
   width: 50%;
+}
+
+@media (max-width: 1030px) {
+  .movie-details > div {
+    width: 100%;
+  }
 }
 
 .movie-img {
@@ -583,6 +625,13 @@ i.fas, i.fab {
 
 .movie-txt {
   padding-left: 5%;
+}
+
+@media (max-width: 1030px) {
+  .movie-txt {
+    padding-left: 0;
+    padding-top: 5%;
+  }
 }
 
 .sub-heading {
@@ -674,8 +723,130 @@ i.fas, i.fab {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2% 6% 6%;
+}
+
+@media (max-width: 1030px) {
+  .similar-movies {
+    padding: 25px;
+  }
 }
 
 .similar-movies > div {
-  width: calc(100% / 3);
+  width: calc(90% / 3);
+}
+
+@media (max-width: 1030px) {
+  .similar-movies > div {
+    width: 100%;
+    margin-bottom: 5%;
+  }
+}
+
+.up-button {
+  font-family: 'FontAwesome';
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  z-index: 99;
+  cursor: pointer;
+  background-color: transparent;
+  color: rgba(231, 229, 229, 0.3);
+  font-weight: lighter;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: -webkit-transform ease-in-out .2s;
+  transition: -webkit-transform ease-in-out .2s;
+  transition: transform ease-in-out .2s;
+  transition: transform ease-in-out .2s, -webkit-transform ease-in-out .2s;
+}
+
+.up-button {
+  font-size: 3rem;
+  line-height: calc(3rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  .up-button {
+    font-size: calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  .up-button {
+    font-size: 6rem;
+    line-height: calc(6rem + 5px);
+  }
+}
+
+.up-button:hover,
+.up-button:focus {
+  background-color: transparent;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  color: rgba(231, 229, 229, 0.8);
+}
+
+footer {
+  background-color: #232323;
+  color: #cfcece;
+  text-align: center;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+          box-shadow: 5px 5px 15px 5px #000000;
+  padding: 10px 0;
+}
+
+footer {
+  font-size: 1.6rem;
+  line-height: calc(1.6rem + 5px);
+}
+
+@media (min-width: 30rem) {
+  footer {
+    font-size: calc(1.6rem + strip-unit(0.9rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    line-height: calc(calc(1.6rem + strip-unit(0.9rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+  }
+}
+
+@media (min-width: 160rem) {
+  footer {
+    font-size: 2.5rem;
+    line-height: calc(2.5rem + 5px);
+  }
+}
+
+footer a {
+  position: relative;
+}
+
+footer a:after {
+  content: '';
+  height: 2px;
+  position: absolute;
+  bottom: -5px;
+  background: goldenrod;
+  width: 0;
+  left: 50%;
+  -webkit-transition: width 0.3s, left 0.3s;
+  transition: width 0.3s, left 0.3s;
+}
+
+footer span:hover a:after, footer span:focus a:after {
+  width: 100%;
+  left: 0;
+}
+
+footer p {
+  padding: 4px 0;
+}
+
+footer a {
+  color: goldenrod;
 }
