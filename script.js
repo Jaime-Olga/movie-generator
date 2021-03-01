@@ -1,6 +1,7 @@
 
 const movieApp = {};
 
+//global variables
 movieApp.resultsContainer = '';
 movieApp.movie = '';
 movieApp.movieID = '';
@@ -12,18 +13,18 @@ movieApp.apiKey = 'be004bf3fc203fe839ccb38c47ddc0ee';
 movieApp.getData = (genre) => {
 
     //construct discover endpoint
-    const urlDiscover = new URL(movieApp.baseURL + 'discover/movie')
+    const urlDiscover = new URL(movieApp.baseURL + 'discover/movie');
     urlDiscover.search = new URLSearchParams({
         api_key: movieApp.apiKey,
         with_original_language: 'en',
         with_genres: genre,
         'primary_release_date.lte': movieApp.reformatDate(new Date(), true)
-    })
+    });
 
     //get movie data using discover endpoint
     fetch(urlDiscover).then(function(response) {
             //parse response into JSON
-            return response.json()
+            return response.json();
         }).then(function (jsonResponse) {
 
             //filter returned array to exclude those without a poster path
@@ -42,10 +43,10 @@ movieApp.getData = (genre) => {
             const urlTrailer = new URL(movieApp.baseURL + 'movie/' + movieApp.movieID + '/videos')
             urlTrailer.search = new URLSearchParams({
                 api_key: movieApp.apiKey
-            })
+            });
 
             //construct similar movie endpoint
-            const urlSimilarMovies = new URL(movieApp.baseURL + 'movie/' + movieApp.movieID + '/similar')
+            const urlSimilarMovies = new URL(movieApp.baseURL + 'movie/' + movieApp.movieID + '/similar');
             urlSimilarMovies.search = new URLSearchParams({
                 api_key: movieApp.apiKey,
                 language: 'en'
@@ -69,7 +70,7 @@ movieApp.getData = (genre) => {
                     const trailerData = data[0].results;
                         //loop through returned array to find first YouTube trailer
                         for (let i = 0; i < trailerData.length; i++) {
-                            const video = trailerData[i]
+                            const video = trailerData[i];
                             if (video.site == 'YouTube' && video.type == 'Trailer') {
                                 trailerKey = video.key;
                                 break;
@@ -112,18 +113,18 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
 
         //construct elements
             //create poster img container
-            movieApp.posterImgContainer = document.createElement('div');
-            movieApp.posterImgContainer.classList.add('movie-img');
+            const posterImgContainer = document.createElement('div');
+            posterImgContainer.classList.add('movie-img');
 
             //append poster image to container
             const posterImg = document.createElement('img');
             posterImg.src = "https://image.tmdb.org/t/p/w500/" + movieApp.movie.poster_path;
             posterImg.alt = movieApp.movie.title + " movie poster";
-            movieApp.posterImgContainer.appendChild(posterImg);
+            posterImgContainer.appendChild(posterImg);
 
             //create overview container
-            movieApp.overviewContainer = document.createElement('div');
-            movieApp.overviewContainer.classList.add('movie-txt');
+            const overviewContainer = document.createElement('div');
+            overviewContainer.classList.add('movie-txt');
 
             //create overview title
             const overviewTitle = document.createElement('h3');
@@ -131,13 +132,13 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
 
             //create star rating containers
             const ratingsContainer = document.createElement('div');
-            ratingsContainer.classList.add('vote-average')
+            ratingsContainer.classList.add('vote-average');
             const starContainer = document.createElement('div');
-            starContainer.classList.add('star-ratings')
+            starContainer.classList.add('star-ratings');
             const starFilledContainer = document.createElement('div');
-            starFilledContainer.classList.add('fill-ratings')
+            starFilledContainer.classList.add('fill-ratings');
             const starEmptyContainer = document.createElement('div');
-            starEmptyContainer.classList.add('empty-ratings')
+            starEmptyContainer.classList.add('empty-ratings');
 
             ratingsContainer.appendChild(starContainer);
             starContainer.append(starEmptyContainer, starFilledContainer);
@@ -145,7 +146,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
             //add sr-only rating text
             const srText = document.createElement('p');
             srText.classList.add('sr-only');
-            srText.textContent = `Vote Average: ${movieApp.movie.vote_average} / 10`
+            srText.textContent = `Vote Average: ${movieApp.movie.vote_average} / 10`;
             ratingsContainer.appendChild(srText);
 
             //add stars
@@ -185,7 +186,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
                 53: { icon: 'fas fa-dizzy', label: 'Thriller' },
                 37: { icon: 'fas fa-hat-cowboy', label: 'Western' },
                 10751: { icon: 'fas fa-home', label: 'Family' }
-            }
+            };
 
             //loop through genres and append corresponding icon + label
             genreArray.forEach(genre => {
@@ -220,7 +221,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
             const releaseDtValue = document.createElement('p');
             releaseDtValue.textContent = movieApp.movie.release_date;
             
-            releaseDtContainer.append(releaseDtHeader, releaseDtValue)
+            releaseDtContainer.append(releaseDtHeader, releaseDtValue);
 
         //add base elements to page
             //add movie title
@@ -228,14 +229,14 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
 
             //create details container + append to results container
             const movieDetailsContainer = document.createElement('div');
-            movieDetailsContainer.classList.add('movie-details')
+            movieDetailsContainer.classList.add('movie-details');
             movieApp.resultsContainer.appendChild(movieDetailsContainer);
             
             //append all overview items to overview container
-            movieApp.overviewContainer.append(overviewTitle, ratingsContainer, overview, releaseDtContainer, genreContainer);
+            overviewContainer.append(overviewTitle, ratingsContainer, overview, releaseDtContainer, genreContainer);
 
             //append image and all overview items to details container
-            movieDetailsContainer.append(movieApp.posterImgContainer, movieApp.overviewContainer);
+            movieDetailsContainer.append(posterImgContainer, overviewContainer);
 
         //add dynamic elements to page
             //add movie trailer button, if trailer found
@@ -245,7 +246,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
                 trailerBtn.setAttribute('target', '_blank');
                 trailerBtn.href = 'https://www.youtube.com/watch?v=' + trailerKey;
                 trailerBtn.textContent = '   Play Trailer';
-                movieApp.overviewContainer.appendChild(trailerBtn);
+                overviewContainer.appendChild(trailerBtn);
             }
 
             //add button for more results, if simlar movies found
@@ -253,7 +254,7 @@ movieApp.displayMovie = (genreID, trailerKey, similarMovies) => {
                 const similarMoviesBtn = document.createElement('button');
                 similarMoviesBtn.setAttribute('id', 'similar-button')
                 similarMoviesBtn.textContent = 'Find Similar Movies';
-                movieApp.resultsContainer.appendChild(similarMoviesBtn)
+                movieApp.resultsContainer.appendChild(similarMoviesBtn);
             }
             
             //scroll to movie result section
@@ -274,7 +275,7 @@ movieApp.displaySimilarMovies = () => {
 
     //adding container for similar movies
     const similarMoviesContainer = document.createElement('div');
-    similarMoviesContainer.classList.add('similar-movies')
+    similarMoviesContainer.classList.add('similar-movies');
 
     //add header
     const moreLikeThis = document.createElement('h2');
@@ -282,37 +283,63 @@ movieApp.displaySimilarMovies = () => {
     movieApp.resultsContainer.appendChild(moreLikeThis);
 
     //loop through similar movie array
-    const numMovies = 2;
-    if (movieApp.similarMoviesArr.length < numMovies){
-        numMovies = movieApp.similarMoviesArr.length
+    const numMovies = 3;
+    if (movieApp.similarMoviesArr.length < numMovies) {
+        numMovies = movieApp.similarMoviesArr.length;
     }
-    for (let i = 0; i <= numMovies; i++) {
-        const movie = movieApp.similarMoviesArr[i]     
+
+    for (let i = 0; i < numMovies; i++) {
+        const movie = movieApp.similarMoviesArr[i];
     
         //creating a div for images
-        movieApp.posterImgContainer = document.createElement('div');
-        movieApp.posterImgContainer.classList.add('movie-img');
+        const posterImgContainer = document.createElement('div');
+        posterImgContainer.classList.add('movie-img');
         const posterImg = document.createElement('img');
         posterImg.src = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
         posterImg.alt = movie.title + " movie poster";
-        movieApp.posterImgContainer.appendChild(posterImg);
+        posterImgContainer.appendChild(posterImg);
 
         //add image to movie container
-        similarMoviesContainer.appendChild(movieApp.posterImgContainer);
+        similarMoviesContainer.appendChild(posterImgContainer);
 
         //add to page
-        movieApp.resultsContainer.appendChild(similarMoviesContainer)
+        movieApp.resultsContainer.appendChild(similarMoviesContainer);
 
         //scroll to similar movie result container
         movieApp.scrollTo(similarMoviesContainer);
     }
 }
 
+//show the scroll up button
+movieApp.scrollUp = () => {
+    const scrollBtn = document.getElementById("scroll-btn");
+    //when the user scrolls down 50px from the top of the document, show the button
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            scrollBtn.style.display = "block";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    scrollBtn.addEventListener('click', () => {
+        topFunction();
+    });
+}
+
+
 //||||| helper functions |||||
 //create star icons
 movieApp.addStars = (iconClass, iconContainer, num = 10) => {
     for (let j = 0; j < num; j++) {
-        const starIcon = document.createElement('i')
+        const starIcon = document.createElement('i');
         starIcon.setAttribute("class", iconClass);
         iconContainer.appendChild(starIcon);
     }
@@ -340,64 +367,38 @@ movieApp.randomItem = (arr) => {
     return arr[randomEl];
 }
 
-//Get the scrollUP button
-movieApp.scrollUp = () =>{
-    const mybutton = document.getElementById("myBtn");
-    // When the user scrolls down 50px from the top of the document, show the button
-    window.onscroll = function () { scrollFunction() };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-    }
-
-    function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-
-    mybutton.addEventListener('click',() =>{
-        topFunction()
-    })
-}
-
-
-
 movieApp.scrollTo = (element) => {
     // buffer to allow element to fully load before scrolling
     setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
 }
 
 
 //||||| initialize |||||
 movieApp.init = () => {
+    
+    //add scroll event listener and functionality
     movieApp.scrollUp();
-
-    const formEl = document.querySelector('form');
     
     //add submit event listener
+    const formEl = document.querySelector('form');
     formEl.addEventListener('submit', (event) => {
         event.preventDefault();
         const genre = document.querySelector('input[name="genre"]:checked');
 
-        //call getData function
-        movieApp.getData(genre.value)
+        //call get API data function
+        movieApp.getData(genre.value);
     });
 
+    //add similar movies event listener
     movieApp.resultsContainer = document.querySelector('#movie-results-section div');
-
-    movieApp.resultsContainer.addEventListener('click',(event)=>{
-        if(event.target.localName === "button"){          
+    movieApp.resultsContainer.addEventListener('click', (event) => {
+        if (event.target.localName === "button") {          
             movieApp.displaySimilarMovies(); 
             event.target.style.display="none";
         }
     })
-
 };
 
 movieApp.init();

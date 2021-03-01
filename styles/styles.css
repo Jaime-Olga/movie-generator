@@ -193,32 +193,9 @@ textarea {
   padding: .2em 0;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: '';
-  clear: both;
-  height: 0;
-}
-
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-.visually-hidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  -webkit-clip-path: inset(100%);
-          clip-path: inset(100%);
-  clip: rect(0 0 0);
-  overflow: hidden;
 }
 
 html {
@@ -258,8 +235,8 @@ body {
 
 @media (min-width: 30rem) {
   body {
-    font-size: calc(1.5rem + strip-unit(0.5rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(1.5rem + strip-unit(0.5rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(1.5rem + 0.5 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.5rem + 0.5 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
@@ -288,8 +265,8 @@ h1 {
 
 @media (min-width: 30rem) {
   h1 {
-    font-size: calc(3rem + strip-unit(7rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(3rem + strip-unit(7rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(3rem + 7 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(3rem + 7 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
@@ -301,7 +278,7 @@ h1 {
 }
 
 h2 {
-  padding: 5% 5% 0 6%;
+  padding: 3% 5% 2% 3%;
 }
 
 h2 {
@@ -311,8 +288,8 @@ h2 {
 
 @media (min-width: 30rem) {
   h2 {
-    font-size: calc(2rem + strip-unit(2rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(2rem + strip-unit(2rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(2rem + 2 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(2rem + 2 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
@@ -325,7 +302,7 @@ h2 {
 
 @media (max-width: 1030px) {
   h2 {
-    padding: 3% 5% 0% 3%;
+    padding: 3% 5% 4% 3%;
   }
 }
 
@@ -340,8 +317,8 @@ h3 {
 
 @media (min-width: 30rem) {
   h3 {
-    font-size: calc(1.8rem + strip-unit(0.7rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(1.8rem + strip-unit(0.7rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(1.8rem + 0.7 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.8rem + 0.7 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
@@ -403,8 +380,8 @@ button, .button {
 
 @media (min-width: 30rem) {
   button, .button {
-    font-size: calc(1.6rem + strip-unit(0.4rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(1.6rem + strip-unit(0.4rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(1.6rem + 0.4 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.6rem + 0.4 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
@@ -446,11 +423,27 @@ a.button::before {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 1% 4% 4%;
+  padding: 2% 2% 2%;
 }
 
 .genre-btns li {
-  padding: 2%;
+  padding: 0 2% 2%;
+}
+
+.genre-btns li {
+  width: 10rem;
+}
+
+@media (min-width: 30rem) {
+  .genre-btns li {
+    width: calc(10rem + 5 * ((100vw - 30rem) / 130));
+  }
+}
+
+@media (min-width: 160rem) {
+  .genre-btns li {
+    width: 15rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -472,21 +465,21 @@ a.button::before {
 }
 
 .genre-btns i.fas, .genre-btns i.fab {
-  height: 7rem;
-  width: 7rem;
+  height: 6.5rem;
+  width: 6.5rem;
 }
 
 @media (min-width: 30rem) {
   .genre-btns i.fas, .genre-btns i.fab {
-    height: calc(7rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    width: calc(7rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
+    height: calc(6.5rem + 2.5 * ((100vw - 30rem) / 130));
+    width: calc(6.5rem + 2.5 * ((100vw - 30rem) / 130));
   }
 }
 
 @media (min-width: 160rem) {
   .genre-btns i.fas, .genre-btns i.fab {
-    height: 10rem;
-    width: 10rem;
+    height: 9rem;
+    width: 9rem;
   }
 }
 
@@ -497,15 +490,15 @@ a.button::before {
 
 @media (min-width: 30rem) {
   .genre-btns i.fas, .genre-btns i.fab {
-    font-size: calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(3rem + 2.5 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(3rem + 2.5 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
 @media (min-width: 160rem) {
   .genre-btns i.fas, .genre-btns i.fab {
-    font-size: 6rem;
-    line-height: calc(6rem + 5px);
+    font-size: 5.5rem;
+    line-height: calc(5.5rem + 5px);
   }
 }
 
@@ -538,7 +531,7 @@ i.fas, i.fab {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 18px;
+  font-size: 1.8rem;
   padding: 10px;
   padding-top: 0;
 }
@@ -573,15 +566,25 @@ i.fas, i.fab {
   margin-bottom: 5%;
 }
 
-.movie-results-container h2:last-of-type {
-  margin-top: 35px;
+.movie-results-container h2 {
+  padding-bottom: 1%;
+}
+
+.movie-results-container h2:nth-of-type(2) {
+  margin-top: 20px;
 }
 
 .movie-results-container button {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  margin-top: 50px;
+  margin-top: 30px;
+}
+
+@media (max-width: 1030px) {
+  .movie-results-container button {
+    margin-top: 50px;
+  }
 }
 
 .movie-details {
@@ -590,8 +593,7 @@ i.fas, i.fab {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 6%;
-  padding-top: 2%;
+  padding: 2% 3% 6%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -728,12 +730,12 @@ i.fas, i.fab {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 2% 6% 6%;
+  padding: 2% 3% 6%;
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 700px) {
   .similar-movies {
-    padding: 25px;
+    padding-bottom: 0;
   }
 }
 
@@ -741,10 +743,10 @@ i.fas, i.fab {
   width: calc(90% / 3);
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 700px) {
   .similar-movies > div {
     width: 100%;
-    margin-bottom: 5%;
+    margin: 0 0 5%;
   }
 }
 
@@ -774,8 +776,8 @@ i.fas, i.fab {
 
 @media (min-width: 30rem) {
   .up-button {
-    font-size: calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(3rem + strip-unit(3rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(3rem + 3 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(3rem + 3 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
@@ -800,7 +802,7 @@ footer {
   text-align: center;
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
           box-shadow: 5px 5px 15px 5px #000000;
-  padding: 10px 0;
+  padding: 15px 0;
 }
 
 footer {
@@ -810,15 +812,15 @@ footer {
 
 @media (min-width: 30rem) {
   footer {
-    font-size: calc(1.6rem + strip-unit(0.9rem) * ((100vw - 30rem) / strip-unit(130rem)));
-    line-height: calc(calc(1.6rem + strip-unit(0.9rem) * ((100vw - 30rem) / strip-unit(130rem))) + 5px);
+    font-size: calc(1.6rem + 0.4 * ((100vw - 30rem) / 130));
+    line-height: calc(calc(1.6rem + 0.4 * ((100vw - 30rem) / 130)) + 5px);
   }
 }
 
 @media (min-width: 160rem) {
   footer {
-    font-size: 2.5rem;
-    line-height: calc(2.5rem + 5px);
+    font-size: 2rem;
+    line-height: calc(2rem + 5px);
   }
 }
 
@@ -828,9 +830,9 @@ footer a {
 
 footer a:after {
   content: '';
-  height: 2px;
+  height: 1.5px;
   position: absolute;
-  bottom: -5px;
+  bottom: -4px;
   background: goldenrod;
   width: 0;
   left: 50%;

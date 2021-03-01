@@ -1,3 +1,8 @@
+//calculate font size & line-height
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
 @mixin fluid-font-size($min-font-size, $max-font-size, $min-vw: 30rem, $max-vw: 160rem) {
     
     $u1: unit($min-font-size);
@@ -22,6 +27,7 @@
     }
 }
 
+//calculate width and height
 @mixin fluid-width-height($min-size, $max-size, $min-vw: 30rem, $max-vw: 160rem) {
     
     $u1: unit($min-size);
@@ -46,16 +52,40 @@
     }
 }
 
+//calculate width only
+@mixin fluid-width($min-size, $max-size, $min-vw: 30rem, $max-vw: 160rem) {
+    
+    $u1: unit($min-size);
+    $u2: unit($max-size);
+    $u3: unit($min-vw);
+    $u4: unit($max-vw);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+        & {
+            width: $min-size;            
+            @media (min-width: $min-vw) {
+                $fluid-size: calc(#{$min-size} + #{strip-unit($max-size - $min-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+                width: $fluid-size;
+            }
+            @media (min-width: $max-vw) {
+                width: $max-size;
+            }
+        }
+    }
+}
+
+
+
 //animated underline on hover
-@mixin animated-underline($color, $el: 'li') {
+@mixin animated-underline($color, $el) {
     a {
         position: relative;
     }
     a:after {
         content: '';
-        height: 2px;
+        height: 1.5px;
         position: absolute;
-        bottom: -5px;
+        bottom: -4px;
         background: $color; 
         width: 0;
         left: 50%;
@@ -69,6 +99,12 @@
 
 @mixin small-laptop {
     @media (max-width: 1030px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 700px) {
         @content;
     }
 }

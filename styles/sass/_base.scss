@@ -10,7 +10,7 @@ html {
     margin: 0 auto;    
 }
 
-body{
+body {
     background-color:$primary-color;
     background-image: url(../assets/reel.png);
     background-repeat: no-repeat;
@@ -36,10 +36,10 @@ h1 {
 
 h2 {
     @include fluid-font-size(2rem, 4rem);  
-    padding: 5% 5% 0 6%;
-    @include small-laptop{
-        &{
-            padding: 3% 5% 0% 3%;
+    padding: 3% 5% 2% 3%;
+    @include small-laptop {
+        & {
+            padding: 3% 5% 4% 3%;
         }
     }
 }
@@ -58,8 +58,7 @@ fieldset, .movie-results-container {
     padding: 20px;
     background:$primary-color-transparent;
     border-radius: 20px;
-    box-shadow:5px 5px 15px 5px #000000;   
-    
+    box-shadow:5px 5px 15px 5px #000000;
 }
 
 img {
@@ -113,16 +112,16 @@ a.button::before {
     list-style: none;
     align-items: center;
     justify-content: center;
-    padding: 1% 4% 4%;    
+    padding: 2% 2% 2%;    
     
     li {
-        padding: 2%;
-        @include small-phone{
-            &{
+        padding: 0 2% 2%;
+        @include fluid-width(10rem, 15rem);
+        @include small-phone {
+            & {
                 width: 110px;  
             }
         }
-        
     }
 
     input[type=radio] {
@@ -130,8 +129,8 @@ a.button::before {
     }
 
     i.fas, i.fab {
-        @include fluid-width-height(7rem, 10rem);
-        @include fluid-font-size(3rem, 6rem);
+        @include fluid-width-height(6.5rem, 9rem);
+        @include fluid-font-size(3rem, 5.5rem);
         cursor: pointer;
         transition: transform ease-in-out .2s;
     }
@@ -151,7 +150,7 @@ i.fas, i.fab {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 1.8rem;
     padding: 10px;
     padding-top: 0;
 
@@ -180,56 +179,60 @@ i.fas, i.fab {
     flex-direction: column; 
     margin-bottom: 5%;
 
-    h2:last-of-type{
-        margin-top: 35px;
+    h2 {
+        padding-bottom: 1%;
+    }
+
+    h2:nth-of-type(2) {
+        margin-top: 20px;
     }
 
     button {
         align-self: center;
-        margin-top: 50px;
+        margin-top: 30px;
+
+        @include small-laptop {
+            margin-top: 50px;
+        }
+
     }
 }
 
 .movie-details {
     display: flex;
     flex-wrap: wrap;
-    padding: 6%;
-    padding-top: 2%;
+    padding: 2% 3% 6%;
     align-items: center;
-    @include small-laptop{
-        &{
+    @include small-laptop {
+        & {
             padding: 3%; 
         }
-        
     }
 }
-
 
 .movie-details > div {
     width: 50%;
     @include small-laptop {
-        &{
+        & {
             width: 100%;
         }
-        
     }
 }
 
-.movie-img{
+.movie-img {
     object-fit: cover;
     object-position: center;
-    box-shadow:5px 5px 10px 3px #000000;
+    box-shadow: 5px 5px 10px 3px #000000;
     border-radius: 15px;
 }
 
 .movie-txt {
     padding-left: 5%;
     @include small-laptop {
-        &{
+        & {
             padding-left: 0;
             padding-top: 5%;
         }
-        
     }
 }
 
@@ -296,74 +299,70 @@ i.fas, i.fab {
     }
 }
 
-
-
 // similar-movies
-.similar-movies{
+.similar-movies {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2% 6% 6%;
-    @include small-laptop{
-        &{
-            padding: 25px;
+    padding: 2% 3% 6%;
+
+    @include tablet {
+        & {
+            padding-bottom: 0;
         }
-        
     }  
+
 }
 
-.similar-movies > div{
+.similar-movies > div {
     width: calc(90% / 3);    
-    @include small-laptop{
-        &{
+    @include tablet {
+        & {
             width: 100%;
-            margin-bottom: 5%;
+            margin: 0 0 5%;
         }
-        
     }  
 }
 
-
+//arrow to scroll to top of page
 .up-button {
-font-family: 'FontAwesome';
-@include fluid-font-size(3rem, 6rem);
-display: none;
-position: fixed;
-bottom: 20px;
-right:5%;
-z-index: 99;
-cursor: pointer;
-background-color: transparent;
-color: $secondary-color-transparent;
-font-weight: lighter;
-box-shadow: none;
-transition: transform ease-in-out .2s;
+    font-family: 'FontAwesome';
+    @include fluid-font-size(3rem, 6rem);
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right:5%;
+    z-index: 99;
+    cursor: pointer;
+    background-color: transparent;
+    color: $secondary-color-transparent;
+    font-weight: lighter;
+    box-shadow: none;
+    transition: transform ease-in-out .2s;
 }
 
 .up-button:hover,
 .up-button:focus {
-background-color:  transparent;
-transform: scale(1.2);
-color: $secondary-color-transparent-2;
+    background-color:  transparent;
+    transform: scale(1.2);
+    color: $secondary-color-transparent-2;
 }
-
-
-
 
 footer{    
     background-color: $primary-color;
     color: $secondary-color;
     text-align: center;
-    box-shadow:5px 5px 15px 5px #000000; 
-    padding: 10px 0;
-    @include fluid-font-size(1.6rem, 2.5rem);    
-    @include animated-underline($highlight-color, 'span') ;      
+    box-shadow: 5px 5px 15px 5px #000000; 
+    padding: 15px 0;
+    @include fluid-font-size(1.6rem, 2rem);    
+    @include animated-underline($highlight-color, 'span');      
 
-        p{
+        p { 
             padding: 4px 0;
         }
-        a{
-        color: $highlight-color;
+
+        a {
+            color: $highlight-color;
         }
 }
 
