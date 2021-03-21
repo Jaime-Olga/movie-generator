@@ -166,8 +166,8 @@ i.fas, i.fab {
 
 .genre-btns :hover .fas, 
 .genre-btns :hover .fab,
-.gentre-btns:focus .fas,
-.gentre-btns:focus .fab{
+.gentre-btns:focus-within .fas,
+.gentre-btns:focus-within .fab{
     transform: scale(1.15); 
     box-shadow: 3px 3px 10px 3px #000000; 
 }
